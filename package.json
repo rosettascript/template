@@ -1,5 +1,5 @@
 {
-  "name": "multisys",
+  "name": "rosettascript-template",
   "version": "1.0.0",
   "description": "Full-stack TypeScript application with React and Node.js",
   "scripts": {
