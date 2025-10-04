@@ -79,8 +79,11 @@ npm run docker:monitoring # With full monitoring stack
 - `default.conf` - Site configuration
 
 ### `/docs/` - Documentation
+- `PROJECT-STRUCTURE.md` - This file - project structure guide
 - `DEPLOYMENT.md` - Deployment guide
 - `MONITORING.md` - Monitoring guide
+- `CONTRIBUTING.md` - Contributing guidelines
+- `SECURITY.md` - Security policy
 
 ### `/.github/` - GitHub Integration
 - `workflows/` - CI/CD pipelines

@@ -107,8 +107,8 @@ git clone <repository-url>
 cd template
 
 # Run the automated setup script
-chmod +x setup.sh
-./setup.sh
+chmod +x scripts/setup.sh
+./scripts/setup.sh
 ```
 
 The setup script will:
@@ -486,9 +486,11 @@ npm run type-check      # TypeScript checking
 ```
 
 For detailed information, see:
-- [Project Structure](PROJECT-STRUCTURE.md)
+- [Project Structure](docs/PROJECT-STRUCTURE.md)
 - [Deployment Guide](docs/DEPLOYMENT.md)
 - [Monitoring Guide](docs/MONITORING.md)
+- [Contributing Guidelines](docs/CONTRIBUTING.md)
+- [Security Policy](docs/SECURITY.md)
 
 ## 📄 License
 
