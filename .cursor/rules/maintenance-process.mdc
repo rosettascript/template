@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+---
+
+# Rule Maintenance Process
+
+## Review Schedule
+- **Monthly** - Quick review of rule effectiveness
+- **Quarterly** - Comprehensive review and updates
+- **Annually** - Major rule restructuring if needed
+
+## Review Checklist
+### Rule Effectiveness
+- [ ] Are rules being followed consistently?
+- [ ] Are there common violations not covered?
+- [ ] Are automated checks catching issues?
+- [ ] Are rules too restrictive or too lenient?
+
+### Technical Currency
+- [ ] Are referenced files still valid?
+- [ ] Are tool versions up to date?
+- [ ] Are new best practices available?
+- [ ] Are deprecated patterns being used?
+
+### Team Feedback
+- [ ] Collect developer feedback quarterly
+- [ ] Address pain points and blockers
+- [ ] Update rules based on real-world usage
+- [ ] Communicate changes effectively
+
+## Rule Update Process
+1. **Identify Need** - Pain point or outdated rule
+2. **Propose Change** - Document rationale and impact
+3. **Team Review** - Discuss with development team
+4. **Update Rules** - Modify rule files and documentation
+5. **Update Automation** - Adjust ESLint/Prettier configs
+6. **Communicate** - Notify team of changes
+7. **Monitor** - Track adoption and effectiveness
+
+## Documentation Maintenance
+- Keep rule references current (file paths, examples)
+- Update automated enforcement configs
+- Maintain rule effectiveness metrics
+- Document exceptions and special cases
+
+## Metrics to Track
+- Code quality scores over time
+- Rule violation frequency
+- Developer feedback scores
+- Build/CI failure rates
+- Time to resolve rule violations

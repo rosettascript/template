@@ -1,0 +1,26 @@
+# <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+
+# Type: feat, fix, docs, style, refactor, test, chore
+# Scope: client, server, docker, docs, config, etc.
+# Subject: imperative, start lower case, don't end with a period
+# Body: Just as in <subject>, use the imperative, present tense: "change" not "changed" nor "changes"
+# Footer: Breaking changes and issues closed
+
+# Examples:
+# feat(client): add user authentication
+# fix(server): resolve database connection issue
+# docs: update deployment guide
+# style: format code with prettier
+# refactor(api): simplify user service
+# test: add unit tests for auth middleware
+# chore: update dependencies
+
+# Breaking changes should start with BREAKING CHANGE:
+# feat(api)!: change user authentication flow
+#
+# BREAKING CHANGE: The authentication flow has been completely rewritten.
+# Users will need to re-authenticate after this update.

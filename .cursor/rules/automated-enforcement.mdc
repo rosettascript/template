@@ -1,0 +1,84 @@
+---
+alwaysApply: true
+---
+
+# Automated Rule Enforcement
+
+## ESLint Configuration
+The following ESLint rules enforce our standards automatically:
+
+### Code Quality Rules
+```json
+{
+  "max-lines": ["error", 500],
+  "no-duplicate-imports": "error",
+  "prefer-const": "error",
+  "no-var": "error",
+  "@typescript-eslint/no-explicit-any": "error",
+  "@typescript-eslint/prefer-nullish-coalescing": "error"
+}
+```
+
+### React Rules
+```json
+{
+  "react/function-component-definition": "error",
+  "react/prop-types": "off",
+  "react/jsx-no-useless-fragment": "error",
+  "react-hooks/rules-of-hooks": "error",
+  "react-hooks/exhaustive-deps": "warn"
+}
+```
+
+### Import Organization
+```json
+{
+  "import/order": [
+    "error",
+    {
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+      "newlines-between": "always"
+    }
+  ]
+}
+```
+
+## Prettier Configuration
+Consistent code formatting:
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false
+}
+```
+
+## TypeScript Configuration
+Strict type checking:
+```json
+{
+  "strict": true,
+  "noImplicitAny": true,
+  "noImplicitReturns": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true
+}
+```
+
+## Pre-commit Hooks
+Use Husky to enforce rules before commits:
+- ESLint check
+- Prettier format check
+- TypeScript compilation
+- Test execution
+
+## CI/CD Pipeline
+Automated checks in CI:
+- Code quality linting
+- Type checking
+- Security vulnerability scanning
+- Performance testing
+- Accessibility testing

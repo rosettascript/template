@@ -1,0 +1,48 @@
+---
+globs: server/src/**/*.ts,server/src/**/*.js,server/*.json
+---
+
+# Backend Development Standards
+
+## API Development
+- **RESTful Conventions** - Use proper HTTP methods and status codes
+- **URL Patterns** - `/api/{resource}/{id?}` with plural nouns
+- **Response Format**:
+  ```typescript
+  {
+    success: boolean,
+    data?: any,
+    error?: {
+      message: string,
+      statusCode: number
+    }
+  }
+  ```
+
+## Controller & Service Pattern
+- **Thin Controllers** - Delegate business logic to services
+- **Service Layer** - Implement business logic in service classes
+- **Dependency Injection** - Use for external services
+- **Error Handling** - Try-catch blocks with proper logging
+- **Transactions** - Use for multi-step database operations
+
+## Database Standards
+- **Schema Management** - Follow `main-schema.sql` conventions
+- **Naming** - snake_case for tables/columns, UUIDs for primary keys
+- **Soft Deletes** - Use `deleted_at` timestamp
+- **Foreign Keys** - Proper constraints with CASCADE options
+- **Migrations** - Execute in order: extensions → schema → functions → triggers → indexes → inserts
+
+## Authentication & Authorization
+- **JWT Tokens** - Proper expiration times and secure storage
+- **Role-Based Access** - Implement RBAC patterns
+- **Middleware** - Use authentication middleware for route protection
+- **Password Security** - bcrypt with minimum 12 rounds
+- **Session Management** - Proper session handling and cleanup
+
+## Validation & Security
+- **Input Validation** - Use express-validator for all inputs
+- **Rate Limiting** - Implement for API endpoints
+- **CORS Configuration** - Proper cross-origin policies
+- **Security Headers** - Use helmet middleware
+- **SQL Injection Prevention** - Parameterized queries only

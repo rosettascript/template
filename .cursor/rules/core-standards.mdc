@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+
+# Core Development Standards
+
+## Code Quality & Organization
+- **Maximum 500 lines per file** - Split large files into smaller, focused modules
+- **Check existing implementations** before creating new features to prevent duplication
+- **Use environment variables** - Never hardcode URLs, ports, or API keys
+- **Proper error handling** - Use try-catch blocks and consistent error patterns
+- **TypeScript strict mode** - Avoid `any` type, use specific types and generics
+
+## File Organization
+- **Server Structure** (`/server/src/`):
+  - `controllers/` - Request handlers
+  - `services/` - Business logic
+  - `middlewares/` - Express middleware
+  - `routes/` - API endpoints
+  - `database/` - SQL schemas and migrations
+- **Client Structure** (`/client/src/`):
+  - `components/` - Reusable UI components
+  - `pages/` - Page-level components
+  - `hooks/` - Custom React hooks
+  - `stores/` - State management
+  - `services/` - API integrations
+
+## Security Standards
+- **Authentication** - JWT tokens with proper expiration
+- **Password Security** - bcrypt with minimum 12 rounds
+- **Input Validation** - Validate all user inputs using express-validator
+- **SQL Injection Prevention** - Use parameterized queries exclusively
+- **Environment Security** - Never commit sensitive data, use environment variables
+
+## Performance Standards
+- **Database Optimization** - Use indexes, connection pooling, and parameterized queries
+- **Frontend Optimization** - Code splitting, lazy loading, and bundle optimization
+- **API Performance** - Implement rate limiting and proper caching strategies
+- **Error Monitoring** - Structured logging and performance monitoring

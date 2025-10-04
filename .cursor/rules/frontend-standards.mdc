@@ -1,0 +1,41 @@
+---
+globs: client/src/**/*.tsx,client/src/**/*.ts,client/*.json,client/*.js,client/*.ts
+---
+
+# Frontend Development Standards
+
+## React & Component Standards
+- **Functional Components** - Use hooks instead of class components
+- **TypeScript Interfaces** - Define proper interfaces for all props
+- **Component Size** - Maximum 500 lines per component
+- **State Management** - Zustand for global state, React hooks for local state
+- **Custom Hooks** - Extract reusable logic into custom hooks
+
+## Component Architecture
+- **Consistent Props** - All components follow standard patterns:
+  - `className?: string` - Additional styling
+  - `children?: React.ReactNode` - Content
+  - `disabled?: boolean` - Disabled state
+  - `loading?: boolean` - Loading state
+- **Variant System** - Consistent variants (primary, secondary, outline, danger)
+- **Forward Refs** - Use React.forwardRef for components needing ref access
+
+## Design System & Styling
+- **Tailwind CSS** - Utility-first approach, no inline styles
+- **Design Tokens** - All values defined in `tailwind.config.js`
+- **Component Classes** - Use predefined classes from `index.css`
+- **Color System** - Use only predefined colors (primary-50 to primary-900)
+- **Typography** - Inter font family, consistent scale (text-xs to text-4xl)
+- **Spacing** - 4px base unit spacing scale
+
+## API Integration & State
+- **Service Layer** - Centralize API calls in service functions
+- **React Query** - Use for server state management and caching
+- **Error Handling** - Proper error boundaries and user feedback
+- **Loading States** - Show appropriate loading indicators
+
+## Performance & Accessibility
+- **Code Splitting** - Route-based code splitting with React.lazy
+- **Memoization** - Use React.memo, useMemo, useCallback appropriately
+- **Accessibility** - ARIA attributes, keyboard navigation, WCAG AA contrast
+- **Responsive Design** - Mobile-first approach with standard breakpoints
