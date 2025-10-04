@@ -1,6 +1,6 @@
 global:
   smtp_smarthost: 'localhost:587'
-  smtp_from: 'alerts@template.com'
+  smtp_from: 'alerts@rosettascript.com'
 
 route:
   group_by: ['alertname']
@@ -16,7 +16,7 @@ receivers:
 
 - name: 'email'
   email_configs:
-  - to: 'admin@template.com'
+  - to: 'rosettascript@gmail.com'
     subject: 'Template Alert: {{ .GroupLabels.alertname }}'
     body: |
       {{ range .Alerts }}

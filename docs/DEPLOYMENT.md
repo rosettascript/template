@@ -120,8 +120,8 @@ PG_USER=your-db-user
 PG_PASSWORD=your-secure-password
 JWT_SECRET=your-super-secure-jwt-secret
 REDIS_HOST=your-redis-host
-SMTP_FROM=noreply@yourdomain.com
-GMAIL_USER=your-email@gmail.com
+SMTP_FROM=noreply@rosettascript.com
+GMAIL_USER=rosettascript@gmail.com
 GMAIL_PASS=your-app-password
 ```
 

@@ -35,7 +35,7 @@ async function runSeeds(): Promise<void> {
       INSERT INTO users (email, password_hash, status, email_verified_at)
       VALUES ($1, $2, 'active', CURRENT_TIMESTAMP)
       RETURNING id
-    `, ['admin@template.com', adminPassword]);
+    `, ['rosettascript@gmail.com', adminPassword]);
 
     const adminId = adminResult.rows[0].id;
 
@@ -91,7 +91,7 @@ async function runSeeds(): Promise<void> {
       VALUES ($1, 'seeded', 'true', 'system')
     `, [adminId]);
 
-    logger.info('✓ Admin user created: admin@template.com / admin123');
+    logger.info('✓ Admin user created: rosettascript@gmail.com / admin123');
     logger.info('✓ Test user created: test@template.com / test123');
     logger.info('Database seeding completed successfully');
   } catch (error) {

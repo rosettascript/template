@@ -146,7 +146,7 @@ receivers:
 
 - name: 'email'
   email_configs:
-  - to: 'admin@template.com'
+  - to: 'rosettascript@gmail.com'
     subject: 'Alert: {{ .GroupLabels.alertname }}'
 ```
 

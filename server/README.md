@@ -109,9 +109,9 @@ RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX_REQUESTS=100
 
 # Email Configuration
-GMAIL_USER=your_email@gmail.com
+GMAIL_USER=rosettascript@gmail.com
 GMAIL_PASS=your_app_password
-SMTP_FROM=noreply@yourapp.com
+SMTP_FROM=noreply@rosettascript.com
 
 # File Upload Configuration
 UPLOAD_PATH=./uploads/
@@ -254,9 +254,9 @@ GET    /api/health/ready           # Readiness check
 
 ### Configuration
 ```env
-GMAIL_USER=your_email@gmail.com
+GMAIL_USER=rosettascript@gmail.com
 GMAIL_PASS=your_app_password
-SMTP_FROM=noreply@yourapp.com
+SMTP_FROM=noreply@rosettascript.com
 ```
 
 ## 🗂️ File Upload

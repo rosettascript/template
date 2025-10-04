@@ -19,7 +19,7 @@ Security vulnerabilities should be reported privately to protect users until a f
 
 ### 2. Report via email
 
-Please send an email to [security@yourdomain.com] with the following information:
+Please send an email to [rosettascript@gmail.com] with the following information:
 
 - **Description**: Clear description of the vulnerability
 - **Impact**: Potential impact and affected components
@@ -179,9 +179,9 @@ This template includes several security features:
 ## Contact
 
 For security-related questions or concerns:
-- **Email**: [security@yourdomain.com]
+- **Email**: [rosettascript@gmail.com]
 - **PGP Key**: [Include your PGP public key if available]
 
 ---
 
-**Note**: Replace `[security@yourdomain.com]` with your actual security contact email address.
+**Note**: Security contact email: rosettascript@gmail.com
