@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '@/hooks/useAuth'
-import { User, Calendar, BarChart3, Settings } from 'lucide-react'
+import { User, Calendar, BarChart3, Settings, CheckCircle } from 'lucide-react'
 
 export const DashboardPage: React.FC = () => {
   const { user } = useAuth()

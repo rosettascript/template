@@ -35,7 +35,7 @@ export const HomePage: React.FC = () => {
               Welcome to Template App
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90">
-              A modern, full-stack template application built with React, TypeScript, and Node.js.
+              Build faster with our comprehensive development template featuring authentication, database integration, and modern tooling.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {isAuthenticated ? (
@@ -73,7 +73,7 @@ export const HomePage: React.FC = () => {
               Everything you need to build modern web applications
             </h2>
             <p className="text-xl text-text-secondary">
-              Pre-configured with industry best practices and modern development tools.
+              Everything you need to kickstart your next project with confidence.
             </p>
           </div>
 
@@ -99,15 +99,15 @@ export const HomePage: React.FC = () => {
       <section className="section-lg bg-background-secondary">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
-            Ready to get started?
+            Join Our Developer Community
           </h2>
           <p className="text-xl text-text-secondary mb-8">
-            Join thousands of developers who are already building amazing applications.
+            Connect with thousands of developers who are already building amazing applications with our template.
           </p>
           {!isAuthenticated && (
             <Link to="/register">
               <Button variant="primary" size="lg">
-                Create Your Account
+                Join Now
                 <ArrowRight className="icon-md ml-2" />
               </Button>
             </Link>

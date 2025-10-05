@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
-import { useAuthStore } from '@/stores/authStore'
 
 import Layout from '@/components/layout/Layout'
+import { HomeLayout } from '@/components/layout/HomeLayout'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 import { HomePage } from '@/pages/HomePage'
 import { LoginPage } from '@/pages/LoginPage'
@@ -11,38 +11,48 @@ import { ProfilePage } from '@/pages/ProfilePage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 
 function App() {
-  const { isAuthenticated } = useAuthStore()
-
   return (
-    <Layout>
-      <Routes>
-        {/* Public routes */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        
-        {/* Protected routes */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
-        
-        {/* 404 route */}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Layout>
+    <Routes>
+      {/* Home page with simple layout */}
+      <Route path="/" element={
+        <HomeLayout>
+          <HomePage />
+        </HomeLayout>
+      } />
+      
+      {/* Auth pages with simple layout */}
+      <Route path="/login" element={
+        <HomeLayout>
+          <LoginPage />
+        </HomeLayout>
+      } />
+      <Route path="/register" element={
+        <HomeLayout>
+          <RegisterPage />
+        </HomeLayout>
+      } />
+      
+      {/* Protected pages with sidebar layout */}
+      <Route path="/dashboard" element={
+        <Layout>
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        </Layout>
+      } />
+      <Route path="/profile" element={
+        <Layout>
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        </Layout>
+      } />
+      <Route path="*" element={
+        <Layout>
+          <NotFoundPage />
+        </Layout>
+      } />
+    </Routes>
   )
 }
 
