@@ -2,13 +2,13 @@ import { Routes, Route } from 'react-router-dom'
 import { useAuthStore } from '@/stores/authStore'
 
 import Layout from '@/components/layout/Layout'
-import ProtectedRoute from '@/components/common/ProtectedRoute'
-import HomePage from '@/pages/HomePage'
-import LoginPage from '@/pages/LoginPage'
-import RegisterPage from '@/pages/RegisterPage'
-import DashboardPage from '@/pages/DashboardPage'
-import ProfilePage from '@/pages/ProfilePage'
-import NotFoundPage from '@/pages/NotFoundPage'
+import { ProtectedRoute } from '@/components/common/ProtectedRoute'
+import { HomePage } from '@/pages/HomePage'
+import { LoginPage } from '@/pages/LoginPage'
+import { RegisterPage } from '@/pages/RegisterPage'
+import { DashboardPage } from '@/pages/DashboardPage'
+import { ProfilePage } from '@/pages/ProfilePage'
+import { NotFoundPage } from '@/pages/NotFoundPage'
 
 function App() {
   const { isAuthenticated } = useAuthStore()

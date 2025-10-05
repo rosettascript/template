@@ -16,7 +16,7 @@ export interface FormActions<T> {
   setErrors: (errors: Partial<Record<keyof T, string>>) => void
   reset: () => void
   handleSubmit: (onSubmit: (values: T) => void | Promise<void>) => (e: React.FormEvent) => void
-  handleChange: (field: keyof T) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  handleChange: (field: keyof T) => (value: string) => void
   handleBlur: (field: keyof T) => (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
@@ -42,15 +42,15 @@ export function useForm<T extends Record<string, unknown>>(
     setErrors(prev => ({ ...prev, [field]: error }))
   }, [])
 
-  const setTouched = useCallback((field: keyof T, touched: boolean) => {
+  const setTouchedField = useCallback((field: keyof T, touched: boolean) => {
     setTouched(prev => ({ ...prev, [field]: touched }))
   }, [])
 
-  const setValues = useCallback((newValues: Partial<T>) => {
+  const setMultipleValues = useCallback((newValues: Partial<T>) => {
     setValues(prev => ({ ...prev, ...newValues }))
   }, [])
 
-  const setErrors = useCallback((newErrors: Partial<Record<keyof T, string>>) => {
+  const setMultipleErrors = useCallback((newErrors: Partial<Record<keyof T, string>>) => {
     setErrors(prev => ({ ...prev, ...newErrors }))
   }, [])
 
@@ -88,14 +88,14 @@ export function useForm<T extends Record<string, unknown>>(
   }, [values, validate])
 
   const handleChange = useCallback((field: keyof T) => {
-    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setValue(field, e.target.value)
+    return (value: string) => {
+      setValue(field, value as T[keyof T])
     }
   }, [setValue])
 
   const handleBlur = useCallback((field: keyof T) => {
     return (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setTouched(field, true)
+      setTouchedField(field, true)
       
       // Validate field on blur if validation schema exists
       if (validationSchema) {
@@ -105,7 +105,7 @@ export function useForm<T extends Record<string, unknown>>(
         }
       }
     }
-  }, [values, validationSchema, setTouched, setError])
+  }, [values, validationSchema, setTouchedField, setError])
 
   const isValid = Object.keys(errors).length === 0
 
@@ -117,9 +117,9 @@ export function useForm<T extends Record<string, unknown>>(
     isValid,
     setValue,
     setError,
-    setTouched,
-    setValues,
-    setErrors,
+    setTouched: setTouchedField,
+    setValues: setMultipleValues,
+    setErrors: setMultipleErrors,
     reset,
     handleSubmit,
     handleChange,

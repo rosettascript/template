@@ -1,265 +1,445 @@
 # Design System Documentation
 
-This document outlines the unified design system for the Template App frontend. All components and pages must follow these design standards to ensure consistency across the application.
+## 🎨 Color Palette
 
-## Design Principles
+### Primary Brand Colors
 
-### 1. Unified Design
-- **Single Source of Truth**: All design values are defined in [design-tokens.ts](mdc:client/src/styles/design-tokens.ts)
-- **Consistent Styling**: Use predefined component classes from [index.css](mdc:client/src/styles/index.css)
-- **Centralized Configuration**: Design tokens are configured in [tailwind.config.js](mdc:client/tailwind.config.js)
-
-### 2. Component Consistency
-- All components must follow the same API patterns
-- Use consistent variant systems (primary, secondary, outline, danger)
-- Implement standardized size variants (sm, md, lg)
-- Follow the same prop interfaces across all components
-
-## Color System
-
-### Primary Colors
-- **Primary-50**: `#eff6ff` - Lightest primary
-- **Primary-500**: `#3b82f6` - Default primary
-- **Primary-600**: `#2563eb` - Hover state
-- **Primary-900**: `#1e3a8a` - Darkest primary
-
-### Semantic Colors
-- **Success**: Green scale for positive actions
-- **Warning**: Yellow scale for caution states
-- **Error**: Red scale for error states
-- **Info**: Blue scale for informational content
-
-### Usage Guidelines
 ```css
-/* ✅ Correct - Use semantic color classes */
-.btn-primary { @apply bg-primary-600 text-white; }
-.alert-success { @apply bg-success-50 border-success-200; }
-
-/* ❌ Incorrect - Don't use arbitrary colors */
-.custom-button { background-color: #ff0000; }
+--text-primary: #0F0F0F          /* Dark charcoal for primary text */
+--text-secondary: #6B7280         /* Medium gray for secondary text */
+--background-primary: #FAF9EE     /* Warm cream background */
+--background-secondary: #EEEEEE   /* Light gray secondary background */
+--button-primary: #181C14         /* Dark charcoal for primary buttons */
+--button-secondary: #F8FAFC       /* Off-white for secondary buttons */
 ```
 
-## Typography System
+### Status & Semantic Colors
 
-### Font Families
-- **Sans**: Inter (primary font)
-- **Mono**: JetBrains Mono (code and data)
+#### General Status Colors
+- **Success:** `bg-green-100 text-green-800` / `bg-green-500`
+- **Warning:** `bg-yellow-100 text-yellow-800` / `bg-yellow-500`
+- **Error:** `bg-red-100 text-red-800` / `bg-red-500`
+- **Info:** `bg-blue-100 text-blue-800` / `bg-blue-500`
+- **Default:** `bg-gray-100 text-gray-800`
 
-### Font Scale
-- **xs**: 0.75rem (12px)
-- **sm**: 0.875rem (14px)
-- **base**: 1rem (16px)
-- **lg**: 1.125rem (18px)
-- **xl**: 1.25rem (20px)
-- **2xl**: 1.5rem (24px)
-- **3xl**: 1.875rem (30px)
-- **4xl**: 2.25rem (36px)
+#### Dashboard Stat Card Colors
+- **Blue** (`bg-blue-500`) - Total Employees
+- **Green** (`bg-green-500`) - Active Employees
+- **Purple** (`bg-purple-500`) - Departments
+- **Yellow** (`bg-yellow-500`) - Pending Requests
+- **Indigo** (`bg-indigo-500`) - Today's Attendance
+- **Emerald** (`bg-emerald-500`) - Monthly Payroll
 
-### Usage Guidelines
+#### Attendance Status Colors
+- **Present:** `text-green-600 bg-green-50`
+- **Late:** `text-yellow-600 bg-yellow-50`
+- **Absent:** `text-red-600 bg-red-50`
+- **Partial:** `text-orange-600 bg-orange-50`
+
+---
+
+## 📝 Typography
+
+### Font Family
 ```css
-/* ✅ Correct - Use predefined font classes */
-.heading { @apply text-2xl font-semibold; }
-.body { @apply text-base text-gray-700; }
-
-/* ❌ Incorrect - Don't use arbitrary font sizes */
-.custom-text { font-size: 17px; }
+font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 ```
 
-## Spacing System
+### Text Sizes
+| Class | Size |
+|-------|------|
+| `text-xs` | 12px |
+| `text-sm` | 14px |
+| `text-base` | 16px |
+| `text-lg` | 18px |
+| `text-xl` | 20px |
+| `text-2xl` | 24px |
+| `text-3xl` | 30px |
 
-### Base Unit: 4px
-- **1**: 4px
-- **2**: 8px
-- **4**: 16px
-- **6**: 24px
-- **8**: 32px
-- **12**: 48px
-- **16**: 64px
-- **24**: 96px
+### Font Weights
+| Class | Weight |
+|-------|--------|
+| `font-medium` | 500 |
+| `font-semibold` | 600 |
+| `font-bold` | 700 |
 
-### Usage Guidelines
-```css
-/* ✅ Correct - Use spacing scale */
-.card { @apply p-6 m-4; }
-.section { @apply py-8 px-4; }
+---
 
-/* ❌ Incorrect - Don't use arbitrary spacing */
-.custom-spacing { padding: 13px; }
-```
-
-## Component Standards
-
-### Button Components
-```css
-/* Base button class */
-.btn { @apply inline-flex items-center justify-center px-4 py-2; }
-
-/* Variants */
-.btn-primary { @apply btn bg-primary-600 text-white; }
-.btn-secondary { @apply btn bg-secondary-600 text-white; }
-.btn-outline { @apply btn border border-gray-300 text-gray-700; }
-.btn-danger { @apply btn bg-error-600 text-white; }
-
-/* Sizes */
-.btn-sm { @apply px-3 py-1.5 text-xs; }
-.btn-lg { @apply px-6 py-3 text-base; }
-```
-
-### Input Components
-```css
-/* Base input class */
-.input { @apply block w-full px-3 py-2 border border-gray-300 rounded-md; }
-
-/* States */
-.input-error { @apply input border-error-300 focus:ring-error-500; }
-.input-success { @apply input border-success-300 focus:ring-success-500; }
-```
-
-### Card Components
-```css
-/* Base card class */
-.card { @apply bg-white shadow-sm rounded-lg border border-gray-200; }
-
-/* Card sections */
-.card-header { @apply px-6 py-4 border-b border-gray-200 bg-gray-50; }
-.card-body { @apply px-6 py-4; }
-.card-footer { @apply px-6 py-4 border-t border-gray-200 bg-gray-50; }
-```
-
-## Layout Standards
-
-### Container System
-```css
-/* Main container */
-.container { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
-
-/* Section spacing */
-.section { @apply py-8; }
-.section-sm { @apply py-4; }
-.section-lg { @apply py-16; }
-```
+## 📐 Layout & Spacing
 
 ### Grid System
-- Use Tailwind's grid system for layouts
-- Implement responsive grid patterns
-- Use consistent gap spacing
 
-## Responsive Design
-
-### Breakpoints
-- **sm**: 640px
-- **md**: 768px
-- **lg**: 1024px
-- **xl**: 1280px
-- **2xl**: 1536px
-
-### Mobile-First Approach
 ```css
-/* ✅ Correct - Mobile first */
-.responsive-text { @apply text-sm md:text-base lg:text-lg; }
-
-/* ❌ Incorrect - Desktop first */
-.desktop-first { @apply text-lg md:text-sm; }
+/* Responsive Grid Patterns */
+grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6  /* Dashboard stats */
+grid-cols-1 md:grid-cols-4                                 /* Overview cards */
+grid-cols-4 gap-4                                          /* Standard grid */
 ```
 
-## Animation Standards
+### Spacing System
 
-### Predefined Animations
+#### Padding
 ```css
-/* Fade animations */
-.animate-fade-in { @apply animate-fade-in; }
-.animate-slide-in { @apply animate-slide-in; }
-.animate-bounce-in { @apply animate-bounce-in; }
+p-2, p-3, p-4, p-6, p-8
+px-3, px-4, px-6
+py-1, py-2, py-3
 ```
 
-### Duration Scale
-- **75ms**: Micro interactions
-- **150ms**: Standard transitions
-- **300ms**: Complex animations
-- **500ms**: Page transitions
+#### Margins
+```css
+mt-1, mt-2, mt-4, mt-6
+mb-2, mb-4
+mx-auto, mx-8
+```
 
-## Accessibility Standards
+#### Gaps
+```css
+gap-2, gap-3, gap-4, gap-6
+space-x-2, space-x-3, space-x-4
+space-y-2, space-y-4, space-y-6
+```
+
+---
+
+## 🧩 Component Design Patterns
+
+### Card Components
+
+#### Base Card
+```css
+bg-white rounded-lg shadow-sm border border-gray-200 p-6
+```
+
+#### Card Variants
+- **Shadows:** `shadow-sm`, `shadow-md`, `shadow-lg`
+- **Hover:** `hover:shadow-md transition-shadow`
+- **Border:** Optional with `border` class
+- **Padding:** `none`, `sm`, `md`, `lg`
+
+---
+
+### Button Components
+
+#### Button Variants
+| Variant | Classes |
+|---------|---------|
+| **Primary** | `bg-button-primary text-white hover:bg-button-primary/90` |
+| **Secondary** | `bg-button-secondary text-text-primary border border-gray-200` |
+| **Outline** | `border border-gray-300 bg-white text-gray-700` |
+| **Ghost** | `text-gray-700 hover:bg-gray-100` |
+| **Danger** | `bg-red-600 text-white hover:bg-red-700` |
+| **Success** | `bg-green-600 text-white hover:bg-green-700` |
+
+#### Button Sizes
+| Size | Classes |
+|------|---------|
+| **Small** | `px-3 py-1.5 text-sm` |
+| **Medium** | `px-4 py-2 text-base` |
+| **Large** | `px-6 py-3 text-lg` |
+
+---
+
+### Input Components
+
+#### Input Base
+```css
+block w-full h-10 px-3 py-2 rounded-md border-gray-300 shadow-sm
+focus:border-button-primary focus:ring-button-primary
+```
+
+#### Input States
+- **Error:** `border-red-300 focus:border-red-500 focus:ring-red-500`
+- **Disabled:** `bg-gray-50 text-gray-500 cursor-not-allowed`
+- **With Icon:** `pl-10` or `pr-10`
+
+---
+
+### Badge Components
+
+#### Badge Base
+```css
+inline-flex items-center rounded-full font-medium
+```
+
+#### Badge Variants
+- **Default:** `bg-gray-100 text-gray-800`
+- **Success:** `bg-green-100 text-green-800`
+- **Warning:** `bg-yellow-100 text-yellow-800`
+- **Error:** `bg-red-100 text-red-800`
+- **Info:** `bg-blue-100 text-blue-800`
+
+#### Badge Sizes
+| Size | Classes |
+|------|---------|
+| **Small** | `px-2 py-0.5 text-xs` |
+| **Medium** | `px-2.5 py-0.5 text-sm` |
+| **Large** | `px-3 py-1 text-base` |
+
+---
+
+## 🏗️ Layout Patterns
+
+### Header Design
+```css
+h-16 bg-background-primary border-b border-gray-200
+flex items-center justify-between h-full px-6
+```
+
+### Sidebar Design
+```css
+bg-background-primary border-r border-gray-200
+w-64  /* expanded */
+w-20  /* collapsed */
+transition-all duration-300
+```
+
+### Page Layout
+```css
+min-h-screen bg-background-primary
+flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8
+```
+
+---
+
+## 🔄 State Design Patterns
+
+### Loading States
+
+#### Loading Spinner
+```css
+animate-spin h-6 w-6 text-button-primary
+```
+
+#### Skeleton Loading
+```css
+animate-pulse bg-gray-200 rounded
+```
+
+### Error States
+
+#### Error Messages
+```css
+bg-red-50 border border-red-200 rounded-md p-4
+text-sm text-red-600
+```
+
+#### Error Icons
+```css
+w-16 h-16 text-red-500 mx-auto
+```
+
+### Empty States
+
+#### Empty State Container
+```css
+text-center py-8
+h-8 w-8 text-gray-400 mx-auto mb-2
+text-sm text-gray-600
+```
+
+---
+
+## ⚡ Interactive Elements
+
+### Hover Effects
+```css
+hover:bg-gray-100 transition-colors
+hover:shadow-md transition-shadow
+hover:bg-button-primary/90
+```
 
 ### Focus States
 ```css
-/* Global focus styles */
-*:focus { @apply outline-none ring-2 ring-primary-500 ring-offset-2; }
+focus:outline-none focus:ring-2 focus:ring-offset-2
+focus:ring-button-primary
+focus:border-transparent
 ```
 
-### Color Contrast
-- Maintain WCAG AA contrast ratios
-- Use semantic colors for meaning
-- Test with high contrast mode
+### Transitions
+```css
+transition-colors duration-200
+transition-shadow
+transition-all duration-300
+```
 
-### Keyboard Navigation
-- Ensure all interactive elements are keyboard accessible
-- Implement proper tab order
-- Use appropriate ARIA attributes
+---
 
-## Implementation Guidelines
+## 🎯 Icon System
 
-### 1. Use Design Tokens
-Always reference design tokens instead of hardcoded values:
+### Icon Sizes
+| Size | Classes |
+|------|---------|
+| Small | `h-4 w-4` |
+| Medium | `h-5 w-5` |
+| Large | `h-6 w-6` |
+| Extra Large | `h-8 w-8` |
+
+### Icon Colors
+```css
+text-gray-400, text-gray-600, text-white
+text-blue-500, text-green-500, text-red-500
+```
+
+---
+
+## 🏷️ Brand Identity
+
+### Logo Design
+```css
+w-8 h-8 bg-button-primary rounded-lg
+flex items-center justify-center
+text-white font-bold text-sm
+```
+
+### App Title
+```css
+text-xl font-semibold text-text-primary
+```
+
+---
+
+## 📱 Responsive Design
+
+### Breakpoints
+| Breakpoint | Width |
+|------------|-------|
+| `sm` | 640px |
+| `md` | 768px |
+| `lg` | 1024px |
+| `xl` | 1280px |
+
+### Responsive Patterns
+
+#### Grid Responsiveness
+```css
+grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6
+```
+
+#### Spacing Responsiveness
+```css
+px-4 sm:px-6 lg:px-8
+py-12 px-4 sm:px-6 lg:px-8
+```
+
+---
+
+## 📋 Usage Guidelines
+
+### Best Practices
+1. Always use the custom color palette variables for brand consistency
+2. Follow mobile-first approach for responsive design
+3. Maintain consistent spacing using the defined spacing system
+4. Use appropriate semantic colors for status indicators
+5. Ensure proper hover and focus states for interactive elements
+6. Apply loading and error states consistently across the application
+
+### Component Composition
+- Start with base classes and add variants as needed
+- Combine utility classes for custom components
+- Maintain consistent padding and spacing ratios
+- Use transitions for smooth state changes
+
+---
+
+## 🔧 Implementation
+
+### Design Tokens
+All design values are centralized in `design-tokens.ts`:
 ```typescript
 import { designTokens } from '@/styles/design-tokens'
 
-// ✅ Correct
-const primaryColor = designTokens.colors.primary[600]
-
-// ❌ Incorrect
-const primaryColor = '#2563eb'
+// Access color values
+const primaryColor = designTokens.colors.textPrimary
+const buttonColor = designTokens.colors.buttonPrimary
 ```
 
-### 2. Component Composition
-Build complex components from smaller, styled components:
-```tsx
-// ✅ Correct - Compose from base components
-<Button variant="primary" size="lg" className="w-full">
-  Submit
-</Button>
-
-// ❌ Incorrect - Custom styling
-<button className="bg-blue-600 text-white px-6 py-3 rounded">
-  Submit
-</button>
-```
-
-### 3. Consistent API
-All components must follow the same prop patterns:
-```tsx
-interface BaseComponentProps {
-  className?: string
-  children?: React.ReactNode
-  disabled?: boolean
-  loading?: boolean
+### Tailwind Configuration
+Custom colors and utilities are defined in `tailwind.config.js`:
+```javascript
+colors: {
+  'text-primary': '#0F0F0F',
+  'background-primary': '#FAF9EE',
+  'button-primary': '#181C14',
+  // ... more colors
 }
 ```
 
-## File Organization
+### CSS Classes
+Pre-built component classes are available in `index.css`:
+```css
+/* Button variants */
+.btn-primary { @apply bg-button-primary text-white; }
+.btn-secondary { @apply bg-button-secondary text-text-primary; }
 
-### Design System Files
-- **`design-tokens.ts`** - Centralized design values
-- **`index.css`** - Component class definitions
-- **`tailwind.config.js`** - Tailwind configuration
-- **`design-system.md`** - This documentation
+/* Card components */
+.card { @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6; }
+
+/* Layout patterns */
+.header { @apply h-16 bg-background-primary border-b border-gray-200; }
+```
+
+---
+
+## 🎨 Design System Files
+
+### Core Files
+- **`design-tokens.ts`** - Centralized design values and tokens
+- **`index.css`** - Component class definitions and utilities
+- **`tailwind.config.js`** - Tailwind configuration with custom colors
+- **`design-system.md`** - This comprehensive documentation
 
 ### Component Files
-- **`Button.tsx`** - Button component with variants
+- **`Button.tsx`** - Button component with all variants
 - **`Input.tsx`** - Input component with states
 - **`Card.tsx`** - Card component with sections
+- **`Badge.tsx`** - Badge component with variants
 
-## Enforcement
+---
 
-### Cursor Rules
-The following rules are automatically applied:
-- **Design System Rule** - Enforces unified design principles
-- **Styling Standards** - Ensures consistent styling patterns
-- **Component Consistency** - Maintains component API consistency
+## 🚀 Getting Started
 
-### Code Review Checklist
-- [ ] Uses predefined design tokens
-- [ ] Follows component API patterns
-- [ ] Implements consistent styling
-- [ ] Maintains accessibility standards
-- [ ] Uses responsive design principles
-- [ ] Follows animation guidelines
+### 1. Import Design Tokens
+```typescript
+import { designTokens } from '@/styles/design-tokens'
+```
+
+### 2. Use Pre-built Classes
+```tsx
+<button className="btn btn-primary btn-lg">
+  Primary Button
+</button>
+```
+
+### 3. Compose Custom Components
+```tsx
+<div className="card card-hover">
+  <div className="card-header">
+    <h3 className="text-lg font-semibold">Card Title</h3>
+  </div>
+  <div className="card-body">
+    <p className="text-text-secondary">Card content</p>
+  </div>
+</div>
+```
+
+### 4. Follow Responsive Patterns
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {/* Responsive grid content */}
+</div>
+```
+
+---
+
+## 🔍 Code Review Checklist
+
+- [ ] Uses predefined design tokens from `design-tokens.ts`
+- [ ] Follows component API patterns consistently
+- [ ] Implements proper responsive design with mobile-first approach
+- [ ] Uses semantic colors for status indicators
+- [ ] Maintains consistent spacing using the 4px base unit
+- [ ] Includes proper hover and focus states
+- [ ] Applies loading and error states appropriately
+- [ ] Uses transitions for smooth interactions
+- [ ] Follows accessibility guidelines
+- [ ] Maintains brand consistency with custom color palette

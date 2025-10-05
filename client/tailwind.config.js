@@ -7,20 +7,41 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary brand colors
+        // Primary Brand Colors
+        'text-primary': '#0F0F0F',          // Dark charcoal for primary text
+        'text-secondary': '#6B7280',        // Medium gray for secondary text
+        'background-primary': '#FAF9EE',    // Warm cream background
+        'background-secondary': '#EEEEEE',  // Light gray secondary background
+        'button-primary': '#181C14',        // Dark charcoal for primary buttons
+        'button-secondary': '#F8FAFC',     // Off-white for secondary buttons
+        
+        // Dashboard Stat Card Colors
+        'dashboard-blue': '#3b82f6',      // Total Employees
+        'dashboard-green': '#22c55e',     // Active Employees
+        'dashboard-purple': '#8b5cf6',    // Departments
+        'dashboard-yellow': '#f59e0b',   // Pending Requests
+        'dashboard-indigo': '#6366f1',   // Today's Attendance
+        'dashboard-emerald': '#10b981',   // Monthly Payroll
+        
+        // Attendance Status Colors
+        'attendance-present': '#16a34a',   // text-green-600 bg-green-50
+        'attendance-late': '#d97706',      // text-yellow-600 bg-yellow-50
+        'attendance-absent': '#dc2626',    // text-red-600 bg-red-50
+        'attendance-partial': '#ea580c',   // text-orange-600 bg-orange-50
+        
+        // Legacy color scales for compatibility
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
         },
-        // Secondary neutral colors
         secondary: {
           50: '#f8fafc',
           100: '#f1f5f9',
