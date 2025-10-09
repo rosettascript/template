@@ -5,7 +5,8 @@ alwaysApply: true
 # Core Development Standards
 
 ## Code Quality & Organization
-- **Maximum 500 lines per file** - Split large files into smaller, focused modules
+- **Maximum 500 lines per file** - Split large files into smaller, focused modules (applies to both code and documentation)
+- **Documentation limit** - Keep documentation files under 500 lines for maintainability
 - **Check existing implementations** before creating new features to prevent duplication
 - **Use environment variables** - Never hardcode URLs, ports, or API keys
 - **Proper error handling** - Use try-catch blocks and consistent error patterns
