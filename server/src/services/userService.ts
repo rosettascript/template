@@ -11,7 +11,24 @@ const pool = new Pool({
   database: config.database.database,
   password: config.database.password,
   port: config.database.port,
-  ssl: config.database.ssl
+  ssl: config.database.ssl,
+  // Add connection pool configuration to prevent memory leaks
+  max: 20, // Maximum number of clients in the pool
+  idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
+  connectionTimeoutMillis: 2000, // Return an error after 2 seconds if connection could not be established
+});
+
+// Graceful shutdown handler
+process.on('SIGINT', async () => {
+  logger.info('Received SIGINT, closing database pool...');
+  await pool.end();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  logger.info('Received SIGTERM, closing database pool...');
+  await pool.end();
+  process.exit(0);
 });
 
 export interface User {
@@ -264,16 +281,25 @@ class UserService {
     try {
       await client.query('BEGIN');
 
-      // Update user profile
-      const setClause = Object.keys(updateData)
-        .map((key, index) => `${key} = $${index + 2}`)
+      // Build parameterized query safely
+      const allowedFields = ['first_name', 'last_name', 'display_name', 'phone', 'bio', 'locale', 'timezone'];
+      const updateFields = Object.keys(updateData).filter(key => allowedFields.includes(key));
+      
+      if (updateFields.length === 0) {
+        throw new Error('No valid fields to update');
+      }
+
+      const setClause = updateFields
+        .map((field, index) => `${field} = $${index + 2}`)
         .join(', ');
+
+      const values = [id, ...updateFields.map(field => updateData[field as keyof UpdateUserData])];
 
       await client.query(`
         UPDATE user_profiles 
         SET ${setClause}, updated_at = CURRENT_TIMESTAMP
         WHERE user_id = $1
-      `, [id, ...Object.values(updateData)]);
+      `, values);
 
       await client.query('COMMIT');
 
@@ -335,6 +361,12 @@ class UserService {
       SET deleted_at = CURRENT_TIMESTAMP, updated_at = CURRENT_TIMESTAMP
       WHERE id = $1
     `, [id]);
+  }
+
+  // Method to properly close the database pool
+  async closePool(): Promise<void> {
+    await pool.end();
+    logger.info('Database pool closed');
   }
 }
 

@@ -22,14 +22,14 @@ export const authenticateToken = (
   if (!token) {
     const error = new Error('Access token required') as AppError;
     error.statusCode = 401;
-    throw error;
+    return next(error);
   }
 
   jwt.verify(token, config.jwt.secret, (err, decoded) => {
     if (err) {
       const error = new Error('Invalid or expired token') as AppError;
       error.statusCode = 403;
-      throw error;
+      return next(error);
     }
 
     req.user = decoded as AuthRequest['user'];
@@ -42,14 +42,14 @@ export const requireRole = (roles: string[]) => {
     if (!req.user) {
       const error = new Error('Authentication required') as AppError;
       error.statusCode = 401;
-      throw error;
+      return next(error);
     }
 
     const hasRole = req.user.roles.some(role => roles.includes(role));
     if (!hasRole) {
       const error = new Error('Insufficient permissions') as AppError;
       error.statusCode = 403;
-      throw error;
+      return next(error);
     }
 
     next();
