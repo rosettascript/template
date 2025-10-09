@@ -219,6 +219,11 @@ class UserService {
     }
 
     if (status) {
+      // Validate status against allowed values to prevent SQL injection
+      const allowedStatuses = ['active', 'inactive', 'suspended', 'deleted'];
+      if (!allowedStatuses.includes(status)) {
+        throw new Error(`Invalid status value. Allowed values: ${allowedStatuses.join(', ')}`);
+      }
       whereClause += ` AND u.status = $${paramIndex}`;
       queryParams.push(status);
       paramIndex++;
