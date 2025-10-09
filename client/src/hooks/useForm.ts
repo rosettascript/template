@@ -67,7 +67,7 @@ export function useForm<T extends Record<string, unknown>>(
     const validationErrors = validationSchema(values)
     setErrors(validationErrors)
     
-    return Object.keys(validationErrors).length === 0
+    return Object.values(validationErrors).every(error => !error)
   }, [values, validationSchema])
 
   const handleSubmit = useCallback((onSubmit: (values: T) => void | Promise<void>) => {
@@ -107,7 +107,7 @@ export function useForm<T extends Record<string, unknown>>(
     }
   }, [values, validationSchema, setTouchedField, setError])
 
-  const isValid = Object.keys(errors).length === 0
+  const isValid = Object.values(errors).every(error => !error)
 
   return {
     values,

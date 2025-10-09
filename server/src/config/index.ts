@@ -17,7 +17,13 @@ export const config = {
     ssl: process.env.PG_SSL === 'true'
   },
   jwt: {
-    secret: process.env.JWT_SECRET || '',
+    secret: process.env.JWT_SECRET || (() => {
+      if (process.env.NODE_ENV === 'production') {
+        throw new Error('JWT_SECRET environment variable is required in production');
+      }
+      console.warn('⚠️  WARNING: Using default JWT secret in development. Set JWT_SECRET environment variable for production.');
+      return 'dev-default-secret-change-in-production';
+    })(),
     expiresIn: process.env.JWT_EXPIRES_IN || '1d'
   },
   cors: {
