@@ -6,9 +6,11 @@ import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 
 import { config } from './config';
-import { logger } from './utils/logger';
+import { logger, morganStream } from './utils/logger';
 import { errorHandler } from './middlewares/errorHandler';
 import { notFoundHandler } from './middlewares/notFoundHandler';
+import { sanitizeInput } from './middlewares/sanitizeInput';
+import { performanceMonitor } from './middlewares/performanceMonitor';
 import { authRoutes } from './routes/auth';
 import { userRoutes } from './routes/users';
 import { healthRoutes } from './routes/health';
@@ -19,7 +21,29 @@ dotenv.config();
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'none'"],
+    },
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true
+  },
+  noSniff: true,
+  xssFilter: true,
+  referrerPolicy: { policy: "same-origin" }
+}));
 
 // CORS configuration
 app.use(cors({
@@ -36,11 +60,17 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Logging
-app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
+app.use(morgan('combined', { stream: morganStream }));
 
 // Body parsing
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Input sanitization
+app.use(sanitizeInput);
+
+// Performance monitoring
+app.use(performanceMonitor);
 
 // Routes
 app.use('/api/health', healthRoutes);
