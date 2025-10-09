@@ -1,3 +1,5 @@
+import { Request } from 'express';
+
 // JWT Payload types
 export interface JWTPayload {
   id: string;
@@ -36,6 +38,11 @@ export interface User {
   created_at: Date;
   updated_at: Date;
   deleted_at?: Date;
+  firstName?: string;
+  lastName?: string;
+  displayName?: string;
+  status: 'active' | 'inactive' | 'suspended' | 'deleted';
+  roles: string[];
 }
 
 export interface UserProfile {

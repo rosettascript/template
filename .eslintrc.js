@@ -29,15 +29,15 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     
-    // Import Organization (commented out due to plugin conflicts)
-    // 'import/order': [
-    //   'error',
-    //   {
-    //     groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-    //     'newlines-between': 'always',
-    //     alphabetize: { order: 'asc' },
-    //   },
-    // ],
+    // Import Organization
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc' },
+      },
+    ],
   },
   overrides: [
     {
